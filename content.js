@@ -1,8 +1,7 @@
 // A dictionary to store pairs of words and tooltips
 var wordTooltipDictionary = {
-"marcin": "first name",
-"matuszkiewicz": "last name",
-};
+    "pvc": "Premature Ventricular Contractions are extra heartbeats that happen early"
+}
 
 // Function will put span tags with class tooltip and title=tooltip around word.
 // Word will be matched regardless of case and the orignial case will be preserved
@@ -15,17 +14,20 @@ function addTooltipsToText(word, tooltip, text) {
 
     // Repeat the process for all occurrences of the word in the text
     while (wordIndex !== -1) {
-    // Get the original case of the word
-    var originalWord = text.slice(wordIndex, wordIndex + word.length);
+        // Get the original case of the word
+        var originalWord = text.slice(wordIndex, wordIndex + word.length);
 
-    // Replace the word in the text with the original case of the word and span tags around it
-    var span = '<span class="tooltip" title="'+tooltip+'">' + originalWord + "</span>"
-    console.log(span);
-    text = text.slice(0, wordIndex) + span + text.slice(wordIndex + word.length);
+        // Replace the word in the text with the original case of the word and span tags around it
+        var span = '<span class="tooltip blue-box" title="'+tooltip+'">' + originalWord + "</span>"
+        
+        text = text.slice(0, wordIndex) + span + text.slice(wordIndex + word.length);
+        console.log(text);
 
-    // Find the next occurrence of the word in the lowercase text
-    lowerCaseText = lowerCaseText.slice(wordIndex + word.length);
-    wordIndex = lowerCaseText.indexOf(word.toLowerCase());
+        // Find the next occurrence of the word in the lowercase text
+        lowerCaseText = lowerCaseText.slice(wordIndex + word.length);
+        wordIndex = lowerCaseText.indexOf(word.toLowerCase());
+        //lowerCaseText = text.toLowerCase().slice(wordIndex + span.length);
+        //wordIndex = lowerCaseText.indexOf(word.toLowerCase());
     }
 
     return text;
@@ -67,7 +69,8 @@ function attachTooltipsToDocument() {
 
 
   // Call the attachTooltips function when the page is ready
-  $(document).ready(function() {        
+  $(document).ready(function() {      
+    console.log('loaded');
     setTimeout(function() {
         attachTooltipsToDocument();
         $( document ).tooltip();
