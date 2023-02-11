@@ -1,6 +1,5 @@
 .blue-box {
-    padding: 10px;
+    padding: 5px;
     border: 2px solid blue;
-    color: blue;
     display: inline-block;
   }
